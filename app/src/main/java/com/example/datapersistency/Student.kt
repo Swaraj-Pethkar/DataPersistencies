@@ -1,5 +1,5 @@
 package com.example.datapersistency
 
-data class Student(val student_name: String, val student_email: String, val student_phone: String, val student_addr: String) {
+data class Student(var student_name: String, var student_email: String, var student_phone: String, var student_addr: String) {
 
 }

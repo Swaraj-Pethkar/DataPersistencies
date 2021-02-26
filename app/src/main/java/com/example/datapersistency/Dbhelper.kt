@@ -1,10 +1,13 @@
 package com.example.datapersistency
 
+import android.R.attr.data
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import org.json.JSONArray
+import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -71,6 +74,7 @@ class Dbhelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
 
         return studList
     }
+
 
     private fun firstCapital(data: String): String {
         return data.toString().substring(0, 1).toUpperCase(Locale.ROOT) + data.toString().substring(1).toLowerCase(

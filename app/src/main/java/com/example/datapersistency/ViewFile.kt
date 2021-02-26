@@ -1,43 +1,47 @@
 package com.example.datapersistency
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.TextView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import java.io.BufferedReader
-import java.io.FileNotFoundException
-import java.io.IOException
-import java.io.InputStreamReader
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import org.json.JSONArray
+import java.io.File
+
 
 class ViewFile : AppCompatActivity() {
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_file)
-        readFile();
-    }
+        val fileName = "file swaraj"
+        val file: File = baseContext.getFileStreamPath(fileName)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
-    fun readFile() {
+        //adding a layoutmanager
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
-        var displayText = findViewById<TextView>(R.id.textView)
-        try {
-            val fileInputStream = openFileInput("file name")
-            val inputStreamReader =
-                InputStreamReader(fileInputStream)
-            val bufferedReader = BufferedReader(inputStreamReader)
-            val stringBuffer = StringBuffer()
-            var lines: String
-//            while (bufferedReader.readLine().also { lines = it } != null) {
-//                stringBuffer.append(
-//                    """
-//                        $lines
-//
-//                        """.trimIndent()
-//                )
-//            }
-            displayText.setText(stringBuffer.toString())
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
+
+        if(file.exists()) {
+            applicationContext.openFileInput(fileName).use { stream ->
+                val text = stream.bufferedReader().use {
+                    it.readText()
+                }
+
+                val data:ArrayList<Student> = ArrayList<Student>()
+
+                val jArray = JSONArray(text)
+                for (i in 0 until jArray.length()) {
+                    val jsonData = jArray.getJSONObject(i)
+                    val student = Student(student_name = jsonData.getString("studentName"), student_email = jsonData.getString("studentEmail"), student_phone = jsonData.getString("studentPhone"), student_addr = jsonData.getString("studentAddr"))
+                    data.add(student);
+                    val adapter = CustomAdapter(data)
+                    recyclerView.adapter = adapter
+                }
+
+            }
         }
     }
+
 }

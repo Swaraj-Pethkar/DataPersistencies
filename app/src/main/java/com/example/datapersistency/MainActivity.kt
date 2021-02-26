@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         val assign1 = findViewById<Button>(R.id.assign1)
         val assign2 = findViewById<Button>(R.id.assign2)
-//        val assign3 = findViewById<Button>(R.id.assign3)
+        val assign3 = findViewById<Button>(R.id.assign3)
 
         assign1.setOnClickListener{
             val assignment1: Intent = Intent(this,LoginActivity::class.java)
@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(assignment2)
         }
 
-//        assign3.setOnClickListener{
-//            val assignment3: Intent = Intent(this,FileActivity::class.java)
-//            startActivity(assignment3)
-//        }
+        assign3.setOnClickListener{
+            val assignment3: Intent = Intent(this,FileActivity::class.java)
+            startActivity(assignment3)
+        }
     }
 }
