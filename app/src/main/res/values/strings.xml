@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">DataPersistency</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="assignment_2">Assignment 2</string>
+    <string name="assignment_3">Assignment 3</string>
+    <string name="assignment_1">Assignment 1</string>
+    <string name="if_yes_then_show">If Yes Then Show</string>
+    <string name="login_or_register">Login Or Register</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="view_data">View Data</string>
+    <string name="store_it_in_file">Store It In File</string>
+    <string name="task_2">Task 2</string>
+    <string name="task_1">Task 1</string>
+</resources>
